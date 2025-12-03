@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus CSS | Developer Roadmap</title>
+    <link rel="stylesheet" href="acsd.css">
+
+    <style>
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+
+<body class="container">
+
+    <nav class="navbar mb-md">
+        <a href="#" class="navbar__brand">CSS</a>
+        <ul class="navbar__menu">
+            <li><a href="#base" class="navbar__link">Base</a></li>
+            <li><a href="#components" class="navbar__link">Components</a></li>
+            <li><a href="#forms" class="navbar__link">Forms</a></li>
+        </ul>
+    </nav>
+
+    <header class="text-center mt-lg mb-md">
+        <h1>Web Developer Roadmap</h1>
+        <p class="text-muted">A demo page showcasing the drop-in semantic styling and component system.</p>
+        <div class="flex gap-md" style="justify-content: center;">
+            <a href="#" class="btn btn--primary">Get Started</a>
+            <a href="#" class="btn btn--secondary">Read Docs</a>
+        </div>
+    </header>
+
+    <hr>
+
+    <main>
+        <section id="base">
+            <h2>1. Semantic HTML Base</h2>
+            <p>The following elements are styled purely by the <code>@layer base</code> without any classes.</p>
+
+            <article>
+                <h3>Frontend Development</h3>
+                <p>Frontend development involves building the <strong>User Interface</strong>. Key technologies include:
+                </p>
+                <ul>
+                    <li>HTML (Structure)</li>
+                    <li>CSS (Presentation)</li>
+                    <li>JavaScript (Behavior)</li>
+                </ul>
+                <p>Code example:</p>
+                <pre><code>function hello() {
+  console.log("Hello World");
+}</code></pre>
+                <blockquote>
+                    "The web is the only platform that matters." - An anonymous developer
+                </blockquote>
+            </article>
+
+            <h3>Table Data</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tech</th>
+                        <th>Type</th>
+                        <th>Popularity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>React</td>
+                        <td>Library</td>
+                        <td>High</td>
+                    </tr>
+                    <tr>
+                        <td>Vue</td>
+                        <td>Framework</td>
+                        <td>Medium</td>
+                    </tr>
+                    <tr>
+                        <td>Svelte</td>
+                        <td>Compiler</td>
+                        <td>Growing</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <hr class="mt-lg mb-md">
+
+        <section id="components">
+            <h2>2. Components</h2>
+
+            <h3>Alerts</h3>
+            <div class="alert alert--info">
+                <strong>Info:</strong> We just launched version 1.0!
+            </div>
+            <div class="alert alert--danger">
+                <strong>Error:</strong> Failed to connect to database.
+            </div>
+
+            <h3>Cards (Grid Utility)</h3>
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card__header">
+                        Backend Engineering <span class="badge badge--primary">New</span>
+                    </div>
+                    <div class="card__body">
+                        <p class="text-sm">Learn about servers, databases, and APIs. Essential for full-stack
+                            development.</p>
+                        <button class="btn btn--sm btn--secondary w-100 mt-sm">View Course</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card__header">
+                        DevOps
+                    </div>
+                    <div class="card__body">
+                        <p class="text-sm">Understand CI/CD, Docker, and Kubernetes deployment strategies.</p>
+                        <button class="btn btn--sm btn--secondary w-100 mt-sm">View Course</button>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="mt-lg">Buttons & Badges</h3>
+            <div class="flex gap-md items-center">
+                <button class="btn btn--primary">Primary</button>
+                <button class="btn btn--secondary">Secondary</button>
+                <button class="btn btn--danger">Danger</button>
+                <button class="btn btn--secondary" disabled>Disabled</button>
+            </div>
+            <div class="mt-sm">
+                <span class="badge badge--primary">Badge Primary</span>
+                <span class="badge badge--neutral">Badge Neutral</span>
+            </div>
+        </section>
+
+        <hr class="mt-lg mb-md">
+
+        <section id="forms">
+            <h2>3. Forms</h2>
+            <form class="card p-md">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" placeholder="Jane Doe">
+
+                <label for="role">Role</label>
+                <select id="role">
+                    <option>Frontend Developer</option>
+                    <option>Backend Developer</option>
+                    <option>Designer</option>
+                </select>
+
+                <label for="bio">Bio</label>
+                <textarea id="bio" rows="4" placeholder="Tell us about yourself..."></textarea>
+
+                <div class="flex justify-between items-center">
+                    <label style="display: flex; gap: 0.5rem; align-items: center; margin: 0;">
+                        <input type="checkbox" style="width: auto; margin: 0;"> Subscribe to newsletter
+                    </label>
+                    <button type="submit" class="btn btn--primary">Submit Application</button>
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+    <footer class="text-center mt-lg mb-md text-muted">
+        <p>&copy; 2025 CSS Framework. Built for assignment.</p>
+    </footer>
+
+    <button id="theme-btn" class="btn btn--secondary theme-toggle">Dark Mode</button>
+
+    <script>
+        const btn = document.getElementById('theme-btn');
+        const html = document.documentElement;
+
+        btn.addEventListener('click', () => {
+            if (html.getAttribute('data-theme') === 'dark') {
+                html.removeAttribute('data-theme');
+                btn.textContent = 'Dark Mode';
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                btn.textContent = 'Light Mode';
+            }
+        });
+    </script>
+</body>
+
+</html>

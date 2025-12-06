@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Web Components Demo</title>
+
+    <link rel="stylesheet" href="acsd.css">
+
+    <script src="nexus-card.js" defer></script>
+    <script src="nexus-toggle.js" defer></script>
+    <script src="nexus-toast.js" defer></script>
+
+    <style>
+        /* Extra styles just for the demo layout */
+        .component-section {
+            padding: var(--space-xl) 0;
+            border-bottom: 1px solid var(--color-border);
+        }
+    </style>
+</head>
+
+<body class="container">
+
+    <header class="text-center mt-lg mb-md">
+        <h1>Nexus Components</h1>
+        <p class="text-muted">Extending the CSS framework with custom elements.</p>
+        <a href="index.html">Back to Main Framework Demo</a>
+    </header>
+
+    <section class="component-section">
+        <h2>1. Smart Card (&lt;nexus-card&gt;)</h2>
+        <p>A static component using Shadow DOM and named slots.</p>
+
+        <div class="grid-2">
+            <nexus-card>
+                <span slot="header">Featured Course</span>
+                <p><strong>Advanced CSS Architecture</strong></p>
+                <p>Learn how to build design systems from scratch using cascade layers and web components.</p>
+                <div slot="footer">
+                    Updated 2 hours ago
+                </div>
+            </nexus-card>
+
+            <nexus-card>
+                <h3>Simple Card</h3>
+                <p>This card has no header or footer slot content provided, so those areas are hidden automatically by
+                    the component styles.</p>
+            </nexus-card>
+        </div>
+    </section>
+
+    <section class="component-section">
+        <h2>2. Interactive Toggle (&lt;nexus-toggle&gt;)</h2>
+        <p>A form-associated component that manages state and dispatches events.</p>
+
+        <div class="card p-md">
+            <div class="flex gap-md items-center mb-md">
+                <nexus-toggle id="notification-toggle">Enable Notifications</nexus-toggle>
+            </div>
+
+            <div class="flex gap-md items-center">
+                <nexus-toggle checked disabled>Locked Setting</nexus-toggle>
+            </div>
+
+            <p class="text-muted mt-md" id="toggle-status">Status: Waiting for interaction...</p>
+        </div>
+
+        <script>
+            // Demonstration of Event Handling
+            const toggle = document.getElementById('notification-toggle');
+            const status = document.getElementById('toggle-status');
+
+            toggle.addEventListener('nexus-change', (e) => {
+                const isChecked = e.detail.checked;
+                status.textContent = `Status: Notifications are now ${isChecked ? 'ON' : 'OFF'}`;
+
+                // Trigger a toast based on interaction
+                if (isChecked) showToast('Notifications Enabled!', 'success');
+            });
+        </script>
+    </section>
+
+    <section class="component-section">
+        <h2>3. Smart Toast (&lt;nexus-toast&gt;)</h2>
+        <p>Dynamic component that handles its own lifecycle and timers.</p>
+
+        <div class="flex gap-md">
+            <button class="btn btn--primary" onclick="showToast('Action successful!', 'success')">Show Success</button>
+            <button class="btn btn--danger" onclick="showToast('Something went wrong.', 'danger')">Show Error</button>
+            <button class="btn btn--secondary" onclick="showToast('Just letting you know...', 'info')">Show
+                Info</button>
+        </div>
+
+        <script>
+            function showToast(message, type) {
+                // Create element dynamically
+                const toast = document.createElement('nexus-toast');
+
+                // Set attributes
+                toast.setAttribute('type', type);
+                toast.setAttribute('duration', '3000');
+
+                // Set content
+                toast.textContent = message;
+
+                // Append to body
+                document.body.appendChild(toast);
+            }
+        </script>
+    </section>
+
+</body>
+
+</html>
